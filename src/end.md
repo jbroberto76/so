@@ -1,17 +1,25 @@
 ---
 layout: image
 transition: fade
+transition: fade
 image: /img/cover_down.svg
 ---
 
 # {{ $slidev.configs.author }}
 
-<p style="line-height:normal">
+<p>
 
-<carbon-logo-github class="inline-block"/> [jbroberto@ifce.edu.br](jbroberto@ifce.edu.br)<br>
+<mdi-email class="inline-block"/> [jbroberto@ifce.edu.br](jbroberto@ifce.edu.br)
+
+<br>
 
 <carbon-logo-github class="inline-block"/> [jbroberto76](https://github.com/jbroberto76)
+
 </p>
+
+
+
+<br>
 
 <br><br><br><br>
 <PoweredBySlidev />
