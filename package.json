@@ -1,0 +1,19 @@
+{
+  "name": "so",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright-chromium": "^1.55.0"
+  },
+  "dependencies": {
+    "@iconify-json/logos": "^1.2.9"
+  }
+}

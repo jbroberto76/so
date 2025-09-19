@@ -1,0 +1,6 @@
+{
+    "slidev.include": [
+        "**/slides.md",
+        "aula1_conceitos.md"
+    ]
+}
