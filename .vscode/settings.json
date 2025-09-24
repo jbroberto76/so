@@ -1,6 +1,8 @@
 {
     "slidev.include": [
         "**/slides.md",
-        "aula1_conceitos.md"
-    ]
+        "aula1_conceitos.md",
+        "lab1_linux_commands.md"
+    ],
+    "slidev.force-enabled": true
 }
