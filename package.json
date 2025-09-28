@@ -11,7 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "playwright-chromium": "^1.55.0"
+    "playwright-chromium": "^1.55.1"
   },
   "dependencies": {
     "@iconify-json/logos": "^1.2.9"
