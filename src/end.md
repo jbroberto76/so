@@ -7,7 +7,7 @@ image: /img/cover_down.svg
 
 # {{ $slidev.configs.author }}
 
-<p>
+<p style="line-height: 36px">
 
 <mdi-email class="inline-block"/> [jbroberto@ifce.edu.br](jbroberto@ifce.edu.br)
 

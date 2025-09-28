@@ -595,7 +595,7 @@ layout: fact
 ---
 
 # Referências
-- Tanenbaum, A. S. Sistemas Operacionais Modernos. 4a. Edição. Editora Pearson. (Capítulo 1)
+- Tanenbaum, A. S. **Sistemas Operacionais Modernos**. Editora Pearson. (Capítulo 1)
 
 ---
 
