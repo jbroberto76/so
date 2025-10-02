@@ -4,7 +4,7 @@ transition: fade
 lineNumbers: true
 layout: image
 image: /img/cover_right.svg
-title: Conceitos
+title: CLI
 description: Sistemas Operacionais
 author: José Roberto Bezerra
 exportFilename: so_lab1_linux_commands
@@ -63,7 +63,7 @@ layout: quote
 # Por Que Usar Linha de Comando?
 *Performance*
 
-> Dispensam GUI (*Graphical User Interface*) que consomem grandes quantidades de memória e processamento. Os comandos de terminal consomem pouquíssima memória e são executados rapidamente pela CPU.
+> Dispensam GUI (*Graphical User Interface*) que consomem grandes quantidades de memória e processamento. Os comandos de terminal consomem pouquíssima memória e são executados rapidamente pelo sistema.
 
 ---
 layout: quote
@@ -110,12 +110,10 @@ layout: section
 # Desvantagens de Usar CLI
 
 ---
-layout: quote
----
 
 # Desvantagens
 
-Pontos de atenção ao utilizar CLIs:
+Pontos de atenção
 - Lembrar dos comandos
 - Tratamento de erros
 - Curva de aprendizagem
@@ -125,10 +123,10 @@ Pontos de atenção ao utilizar CLIs:
 # Exemplos de CLI
 
 - MS-DOS
-- Command Shell
 - CP/M
 - Httpie
 - Mercurial
+- Unix/Linux/OSx
 - Git
 - SSH
 
@@ -158,10 +156,12 @@ Categorias
 7. Atalhos e utilidades
 
 ---
+layout: center
+---
 
-```mermaid
+```mermaid{scale:1.25}
 mindmap
-  root(Comandos Linux)
+  root(Comandos Linux/OSx/Unix)
     (Arquivos e diretórios)
       
     (Rede)
@@ -372,6 +372,96 @@ mindmap
 | `sleep` | Aguarda um tempo especificado. | `sleep 5` |
 | `time` | Mede a duração da execução de um comando. | `time ls` |
 | `watch` | Executa um programa periodicamente, mostrando a saída em tela cheia. | `watch -n 5 df -h` |
+
+---
+layout: fact
+---
+
+# Perguntas
+
+---
+layout: fact
+---
+
+# Exercícios
+
+---
+layout: two-cols-header
+---
+
+# Exercícios
+Arquivos e diretórios
+
+:: left ::
+
+1. Criar a estrutura de diretórios mostrada ao lado utilizando comandos da seção
+2. Para isso será necessário utilizar os comandos `ls`, `pwd`, `mkdir` (`rmdir`, eventualmente) e `touch`
+3. Copie os arquivos `.jpg` para /root/
+4. Mova o arquivo `README.txt` para `/lixo/`
+
+:: right ::
+
+```plantuml {scale:1}
+@startwbs
++_ /root/
+ +_ documents/
+  +_ trabalho/
+   +_ relatorio.txt
+   +_ anexos/
+  +_ pessoal/
+   +_ lista_compras.txt
+   +_ metas.txt
+ +_ imagens/
+  +_ ferias/
+   +_ foto1.jpg
+   +_ foto1.jpg
+  +_ trabalho/
+ +_ projetos/
+  +_ projeto_a/
+   +_ README.txt
+ +_ lixo/
+  +_ temporario.txt
+@endwbs
+```
+
+---
+layout: two-cols-header
+---
+
+# Exercícios
+Arquivos e diretórios
+
+:: left ::
+
+5. Faça um *backup* de todo o conteúdo com `tar`
+6. Utilize `ls` para ver arquivos ocultos e as permissões dos arquivos
+7. Mude a as permissões do arquivo `.tar` criado em 5. para `700`
+8. Repita o comando do ítem 6. e cheque as mudanças com `ls`
+
+:: right ::
+
+```plantuml {scale:1}
+@startwbs
++_ /root/
+ +_ documents/
+  +_ trabalho/
+   +_ relatorio.txt
+   +_ anexos/
+  +_ pessoal/
+   +_ lista_compras.txt
+   +_ metas.txt
+ +_ imagens/
+  +_ ferias/
+   +_ foto1.jpg
+   +_ foto1.jpg
+  +_ trabalho/
+ +_ projetos/
+  +_ projeto_a/
+   +_ README.txt
+ +_ lixo/
+  +_ temporario.txt
+@endwbs
+```
 
 ---
 
