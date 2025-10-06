@@ -1,631 +1,575 @@
-Sistemas Operacionais
+---
+theme: default
+transition: slide-left
+lineNumbers: true
+layout: image
+image: /img/cover_right.svg
+title: Conceitos
+description: Sistemas Operacionais
+author: José Roberto Bezerra
+exportFilename: so_aula1_conceitos
+colorSchema: dark
+---
 
-Processos
-Prof. José Roberto Bezerra
+# {{ $slidev.configs.title }}
+{{ $slidev.configs.description }}
 
-1
+---
 
-Agenda
+# Objetivo de Aprendizagem
+- Conhecer o conceito de processos
 
- Pseudo paralelismo e Multiprogramação
- Processo
- Chamada de sistema
+---
 
- Fork
- CreateProcess()
+# Agenda
 
- Estados dos processos
- Implementação de processos
- Modelagem de Multiprogramação
+- Pseudo paralelismo e Multiprogramação
+- Processo
+- Chamadas de sistema
+- Estados dos processos
+- Implementação de processos
+- Modelagem de Multiprogramação
 
-2
+---
 
-Pseudo-paralelismo
+# Pseudo-paralelismo
 
- Durante a execução de um programa do
-usuário um computador pode também:
- Acessar o disco
- Exibir texto e enviá-lo a impressora
- Receber dados da interface de rede
- Reproduzir um arquivo mp3
- Realizar a gravação de um CDROM
- Todas estas ações parecem ser
+Durante a execução de um programa do usuário um computador pode também:
+- Acessar o armazenamento
+- Exibir texto e enviá-lo a impressora
+- Receber dados da interface de rede
+- Reproduzir um *streaming*
+- Realizar a *script* de *backup*
 
-executadas simultaneamente, pseudo-
-paralelismo
+---
+layout: quote
+---
 
- A cada segundo a CPU alterna entre
+# Pseudo-paralelismo
 
-vários programas
+> Todas estas ações parecem ser executadas **simultaneamente**, pseudo-paralelismo. A cada instante a CPU alterna entre vários programas.
 
-3
+---
+layout: quote
+---
 
-Multiprogramação
+# Multiprogramação
 
-É o mecanismo que permite a CPU realizar
-trocas rápidas entre os diversos processos
-carregados na memória do sistema
+> É o mecanismo que permite a CPU realizar **trocas rápidas** entre os diversos processos carregados na memória do sistema.
 
-4
+---
+layout: section
+---
 
-Processo e programa são conceitos
-equivalentes?
+# Processos
 
-5
+---
+layout: statement
+---
 
-Processo
+# Processo e programa são conceitos equivalentes?
 
-Programa em execução juntamente com os
-valores atuais do contador de programa, demais
-registradores e variáveis compartilhadas
+---
+layout: center
+---
 
-6
+$$
+Programa = Processo + Contexto
+$$
 
-Questionamentos
+---
+layout: quote
+---
 
- Um programa instalado na máquina é
+# Processo
+Conceito
 
-um processo?
+> Programa em execução juntamente com os valores atuais do contador de programa, demais registradores e variáveis compartilhadas.
 
- Duas instâncias de um mesmo
+---
 
-programa correspondem a quantos
-processos?
+# Questionamentos
 
-7
+> Um programa instalado na máquina é um processo?
 
-Modelo de processo
+<br>
 
- Cada processo é executado
+> Duas instâncias de um mesmo programa correspondem a quantos processos?
 
-sequencialmente
+---
 
- A CPU alterna incessantemente entre os
+# Modelo de processo
 
-vários processos na memória
-(multiprogramação)
+- Cada processo é executado sequencialmente
+- A CPU alterna incessantemente entre os vários processos na memória (**multiprogramação**)
+- Cada processo executa por alguns milisegundos
+- O contexto (contador de programa, registradores, variáveis) é salvo a cada troca de processos
 
- Cada processo executa por alguns
+---
 
-milisegundos
+# Modelo de processo
 
- O contexto (contador de programa,
+- A CPU passa a executar outro processo
+- A alternância entre processos faz com que o desempenho do sistema não seja uniforme
 
-registradores, variáveis) é salvo
+---
 
-8
+# Analogia
 
-Modelo de processo
+- Receita de bolo (programa)
+- Ingredientes (dados de entrada)
+- Cozinheiro (CPU)
+- A realização da atividade (fazer o bolo) é o processo
+- Interrupção pelo filho é a suspensão da tarefa
+- Retomar a tarefa a partir do ponto onde foi interrompida
 
- A CPU passa a executar outro processo
- A alternância entre processos faz com
+---
+layout: two-cols-header
+---
 
-que o desempenho do sistema não seja
-uniforme
+# *Foreground* e *background*
 
-9
+:: left ::
 
-Analogia
+**Foreground** 
 
- Receita de bolo (programa)
- Ingredientes (dados de entrada)
- Cozinheiro (CPU)
- A realização da atividade (fazer o bolo)
+<br>
 
-é o processo
+Processos em primeiro plano interagem diretamente com o usuário realizando alguma tarefa para eles.
 
- Interrupção pelo filho e suspensão da
+:: right ::
 
-tarefa
+**Background**  
 
- Retomar a tarefa a partir do ponto onde
+<br>
 
-foi interrompida
+Processos em segundo plano geralmente são carregados na inicialização do SO e são responsáveis por alguma função específica, mas nem sempre têm interação direta com o usuário.
 
-10
+---
+layout: two-cols-header
+---
 
-Foreground e background
+# Exemplos
 
- Processos
+:: left ::
 
-foreground, ou em
-primeiro plano,
-são aqueles que
-interagem
-diretamente com
-o usuário
-realizando alguma
-tarefa para eles
+**Primeiro plano**  
 
- Processos em
-background,
-geralmente, são
-carregados na
-inicialização do SO
-e são
-responsáveis por
-alguma função
-específica, mas
-nem sempre tem
-interação direta
-com o usuário
+<br>
 
-11
+Gerenciador de arquivos, navegador, editor de texto, planilha, etc
 
- Primeiro plano –
-Gerenciador de
-arquivos,
-navegador, MP3
-player
+:: right ::
 
-Exemplos
+**Segundo plano**
 
- Segundo plano –
-Gerenciador de
-impressão,
-gerenciador de
-atualização,
-servidor web
+<br>
 
-12
+Gerenciador de impressão, gerenciador de atualização, servidor *web*
 
-Criação de Processos
+---
+layout: section
+---
 
-13
+# Criação de Processos
 
- Em sistemas elementares de controle
-(micro-ondas, injeção eletrônica, etc)
-todos os processos são criados na
-inicialização
+---
 
- Em sistemas de uso geral (PC ou Mac,
+# Em sistemas elementares de controle
 
-por exemplo), são utilizados
-mecanismos para criação e término dos
-processos durante a operação do
-sistema
+> Em sistemas elementares de controle (micro-ondas, injeção eletrônica, sistemas dedicados, etc) todos os processos são criados na **inicialização**.
 
-14
+<br>
 
-Criação de processos
+> Em sistemas de uso geral (PC ou Mac, por exemplo), são utilizados mecanismos para criação e término dos processos durante a **operação do sistema**.
 
- Os processos são criados nas seguintes
+---
 
-circunstâncias
+# Criação de processos
+Quando são criados?
+- Inicialização do sistema
+- Chamada ao sistema para criação de processos
+- Requisição do usuário
+- *Job* em lote
 
-
+---
 
-Inicialização do sistema
+# Inicialização do sistema
+Diversos processos são carregados durante a inicialização do sistema
 
- Chamada ao sistema para criação de
+Processos em primeiro plano:
+- Gerenciador de login
+- Programas configurados para inicialização automática
 
-processos
+<br>
 
- Requisição do usuário
+Processos em segundo plano (*daemons*):
+- Servidores
 
-
+---
 
-Job em lote
+# Chamadas de sistema
 
-15
+> Um processo em execução pode realizar chamadas ao sistema para criação de um ou mais processos para cooperação.
 
-Inicialização do sistema
+<br>
 
- Diversos processos são carregados
-durante a inicialização do sistema
+> **Exemplo** Se uma grande quantidade de dados está sendo trazida pela rede para processamento, é conveniente criar um processo para realizar essa tarefa armazenando as informações em um local de memória compartilhado enquanto um segundo processo os remove e processa.
 
- Processos em primeiro plano
+---
+layout: quote
+---
 
- Gerenciador de login
- Programas configurados para inicialização
+# Interação do usuário
 
-automática
+> A cada novo programa chamado pelo usuário um ou mais processos são criados. Em sistemas interativos, normalmente a cada processo criado corresponde a pelo menos uma janela onde o usuário envia comandos e recebe respostas do sistema.
 
- Também são carregados processos em
+---
+layout: image-right
+image: https://www.precisely.com/wp-content/uploads/2024/07/IBMZ-Mainframe.webp
+backgrounsSize: contain
+---
 
-segundo plano (daemons)
- Servidores
+# Sistemas em lote
 
-16
+- Característico dos sistemas monoprocessados
+- *Mainframes* executam *jobs* enviados remotamente pelos usuários
+- O sistema cria os processos à medida em que os jobs são executados
 
-Chamadas de sistema
+---
 
- Um processo em execução pode realizar
-chamadas ao sistema para criação de
-um ou mais processos para cooperação
+# Criação de processos
 
- Exemplo
+- `fork` (UNIX/LINUX)
+- `CreateProcess()` (Win32)
 
- Se uma grande quantidade de dados está
+---
 
-sendo trazida pela rede para
-processamento, é conveniente criar um
-processo para realizar essa tarefa
-armazenando as informações em um local
-de memória compartilhado enquanto um
-segundo processo os remove e processa
+# `fork`
+Cria um clone do processo que fez a chamada `fork`
 
-17
+- Processo Pai e processo Filho
+- Possuem elementos compartilhados
+  - Imagem de memória
+  - Arquivos abertos
+- Filho executa chamada `execve()` (muda sua imagem de memória).
+- Originário do Kernel do Linux.
 
-Interação do usuário
+---
 
- A cada novo programa chamado pelo
-usuário um ou mais processos são
-criados
+# Exemplo `fork`
 
- Em sistemas interativos, normalmente a
-
-cada processo criado corresponde a
-pelo menos uma janela onde o usuário
-envia comandos e recebe respostas do
-sistema
-
-18
-
-Sistemas em lote
-
- Característico dos
-
-sistemas
-monoprocessados
-
- Mainframes executam
-
-jobs enviados
-remotamente pelos
-usuários
-
- O sistema cria os
-
-processos a medida em
-que os jobs são
-executados
-
-19
-
-Criação de processos
-
- fork (UNIX/LINUX)
- CreateProcess (Win32)
-
-20
-
-fork
-
- Cria um clone do processo que fez a
-
-chamada fork
-
- Processo Pai e processo Filho
- Possuem elementos compartilhados
-
-
-
-Imagem de memória
-
- Arquivos abertos
-
- Filho executa chamada execve
- Muda sua imagem de memória
- Originário do Kernel do Linux
-
-21
-
-#include<stdlib.h>
+```c
+#include<stdlib.h>
 #include<stdio.h>
 #include<unistd.h>
 
 int main()
 {
+    int i, pid;
+    pid = fork();
 
-int i, pid;
-pid = fork();
-
-if(pid<0)
-{
-
-fprintf(stderr, "fork falhou\n");
-exit(1);
-
+    if(pid<0)
+    {
+        fprintf(stderr, "fork falhou\n");
+        exit(1);
+    }
+    if(pid==0)
+    {
+        printf("Filho\n");
+        exit(0);
+    }
+    printf("pai\n");
 }
-if(pid==0)
-{
+```
 
-printf("Filho\n");
-exit(0);
+---
 
-}
-printf("pai\n");
+# `CreateProcess()`
 
-}
+- Chamada única usada para criação e carga de um novo processo.
+- Cria um novo processo e seu fluxo de execução primário (*thread*).
+- O novo processo executa o arquivo executável indicado.
+- Faz parte da API do Windows.
 
-22
+---
 
-CreateProcess
+# Exemplo CreateProcess (Win32)
 
- Chamada única usada para criação e
-
-carga de um novo processo
-
- Cria um novo processo e seu fluxo de
-
-execução primário (thread)
-
- O novo processo executa o arquivo
-
-executável indicado
-
- Faz parte da API do Windows
-
-23
-
-BOOL WINAPI CreateProcess
-(
+```c
+BOOL WINAPI CreateProcess(
   __in_opt     LPCTSTR lpApplicationName,
   __inout_opt  LPTSTR lpCommandLine,
-  __in_opt     LPSECURITY_ATTRIBUTES
-lpProcessAttributes,
-  __in_opt     LPSECURITY_ATTRIBUTES
-lpThreadAttributes,
+  __in_opt     LPSECURITY_ATTRIBUTES lpProcessAttributes,
+  __in_opt     LPSECURITY_ATTRIBUTES lpThreadAttributes,
   __in         BOOL bInheritHandles,
   __in         DWORD dwCreationFlags,
   __in_opt     LPVOID lpEnvironment,
   __in_opt     LPCTSTR lpCurrentDirectory,
   __in         LPSTARTUPINFO lpStartupInfo,
-  __out        LPPROCESS_INFORMATION
-lpProcessInformation
+  __out        LPPROCESS_INFORMATION lpProcessInformation
 );
+```
 
-24
+---
 
-Término de processos
+# Término de processos
 
- Saída normal
+- Saída normal
+  - Conclusão da tarefa
+  - `exit` (UNIX) e `ExitProcess` (Win32)
+- Saída por erro
+  - Inexistência de arquivo
 
- Conclusão da tarefa
- exit (UNIX) e ExitProcess (Win32)
+---
 
- Saída por erro
+# Término de processos
 
-
+- Erro fatal
+  - Acesso a área de memória inválida
+  - Divisão por zero
+  - Execução de instrução ilegal
+- Cancelamento por outro processo
+  - `kill` (UNIX)
+  - `TerminateProcess` (Win32)
 
-Inexistência de arquivo
+---
+layout: section
+---
 
- Erro fatal
+# Estados dos Processos
 
- Acesso a área de memória inválida
- Divisão por zero
- Execução de instrução ilegal
+---
 
- Cancelamento por outro processo
+# Estados
 
- kill (UNIX)
- TerminateProcess (Win32)
+- Execução
+- Pronto
+- Bloqueado
 
-25
+---
 
-Estados dos Processos
+# Estados
 
-26
+> **Execução**<br><br>
+Estado do processo que detém o controle da CPU em um dado instante.
 
-Estados
+<br>
 
- Execução
- Pronto
- Bloqueado
+> **Pronto**<br><br>
+Processo em que seu executável está temporariamente parado à espera da disponibilidade da CPU.
 
-27
+<br>
 
-Estados
+> **Bloqueado**<br><br>
+Não será executado enquanto uma determinada operação (evento externo) não for realizada.
 
- Execução
+---
+layout: center
+---
 
- Estado do processo que detém o controle
+```mermaid{scale: 1.4, theme: 'neutral'}
+flowchart LR
+  subgraph Transições
+    A(Pronto) -->|1| B(Execução)
+    B -->|2| C(Bloqueado)
+    C -->|3| A
+    B -->|4| A
+  end
+```
 
-da CPU em um dado instante
+---
+layout: two-cols-header
+---
 
- Pronto
+# Estados
+Transições
 
- Processo em que seu executável está
-temporariamente parado a espera da
-disponibilidade da CPU
+:: left ::
 
- Bloqueado
+1. O processo é selecionado para execução  
 
- Não será executado enquanto uma
+:: right ::
 
-determinada operação (evento externo) não
-for realizada
+```mermaid{scale: 1, theme: 'neutral'}
+flowchart LR
+  subgraph Transições
+    A(Pronto) e1@-->|1| B(Execução)
+    B -->|2| C(Bloqueado)
+    C -->|3| A
+    B -->|4| A
+    e1@{ animate: true }
+  end
+```
 
-28
+---
+layout: two-cols-header
+---
 
-Transições
+# Estados
+Transições
 
-Execução
+:: left ::
+
+2. Depois de ser executado por alguns instantes o processo requisita uma operação externa e é bloqueado  
 
-Pronto
+:: right ::
 
-Bloqueado
+```mermaid{scale: 1, theme: 'neutral'}
+flowchart LR
+  subgraph Transições
+    A(Pronto) -->|1| B(Execução)
+    B e1@-->|2| C(Bloqueado)
+    C -->|3| A
+    B -->|4| A
+    e1@{ animate: true }
+  end
+```
 
-29
+---
+layout: two-cols-header
+---
 
-Transições
+# Estados
+Transições
 
-Execução
+:: left ::
 
-1
+3. O evento externo foi concluído e o processo passa ao estado pronto  
 
-Pronto
+:: right ::
 
-4
+```mermaid{scale: 1, theme: 'neutral'}
+flowchart LR
+  subgraph Transições
+    A(Pronto) -->|1| B(Execução)
+    B -->|2| C(Bloqueado)
+    C e1@-->|3| A
+    B -->|4| A
+    e1@{ animate: true }
+  end
+```
 
-3
+---
+layout: two-cols-header
+---
 
-2
+# Estados
+Transições
 
-Bloqueado
+:: left ::
 
-1.O processo é
+4. O tempo de CPU do processo em execução se esgotou e um novo processo é escolhido para ser executado
 
-selecionado para
-execução
+:: right ::
 
-2.Depois de ser
-executado por
-alguns instantes o
-processo requisita
-uma operação
-externa e é
-bloqueado
+```mermaid{scale: 1, theme: 'neutral'}
+flowchart LR
+  subgraph Transições
+    A(Pronto) -->|1| B(Execução)
+    B -->|2| C(Bloqueado)
+    C -->|3| A
+    B e1@-->|4| A
+    e1@{ animate: true }
+  end
+```
 
-30
+---
 
-Transições
+# Implementação
+Tabela de processos
 
-Execução
+- Gerenciamento de Processos
+- Gerenciamento de Memória
+- Gerenciamento de Arquivos
 
-1
+---
 
-Pronto
+# Implementação
+Gerenciamento de Processos
+- Registradores
+- Contador de Programa (PC)
+- Palavra de Status do Programa (PSW)
+- Estado do Processo
 
-4
+---
 
-3
+# Implementação
+Gerenciamento de Memória
+- Ponteiro para segmento de código
+- Ponteiro para segmento de dados
+- Ponteiro para segmento de pilha
 
-2
+---
 
-Bloqueado
+# Implementação
+Gerenciamento de Arquivos
+- Diretório de trabalho
+- Descritores de arquivos
+- UID (*user* ID)
+- GID (*group* ID)
 
-3.O evento externo
-foi concluído e o
-processo passa ao
-estado pronto
-4.O tempo de CPU
-do processo em
-execução se
-esgotou e um
-novo processo é
-escolhido para ser
-executado
+---
 
-31
+# Multiprogramação
+Modelo
 
-Implementação
+- O uso de multiprogramação amplia a taxa de utilização da CPU.
+- Um processo computa apenas durante uma fração do tempo em que permanece na memória (10 a 20%).
+- Assim, cinco processos seriam, teoricamente, suficientes para ocupar a CPU.
 
- Tabela de processos
- Gerenciamento de Processos
+---
 
-○ Registradores
-○ Contador de Programa (PC)
-○ Palavra de Status do Programa (PSW)
-○ Estado do Processo
+# Multiprogramação
+Equação de utilização
 
- Gerenciamento de Memória
+> Do ponto de vista probabilístico a utilização da CPU pode ser determinada pela fórmula:
+$$U = 1 - p^n$$
 
-○ Ponteiro para segmento de código
-○ Ponteiro para segmento de dados
-○ Ponteiro para segmento de pilha
+Onde:
+- $p$ é a fração de tempo que um processo espera pela conclusão das operações de E/S
+- $n$ é o número de processos carregados na memória
 
- Gerenciamento de Arquivos
+---
 
-○ Diretório de trabalho
-○ Descritores de arquivos
-○ UID (user ID)
-○ GID (group ID)
+# Exemplo
 
-32
+Considerando que:
+- Cada processo passa em média 80% do tempo esperando E/S
+- Um sistema com 512MB de memória possui três programas de usuário carregados
+- Cada programa possui 128MB, inclusive o SO
 
-Modelando a
-multiprogramação
+<br>
 
- O uso de multiprogramação amplia a
+> De quanto seria a taxa de utilização da CPU?
 
-taxa de utilização da CPU
+---
 
- Um processo computa apenas durante
+# Exemplo
+Cálculo
 
-uma fração do tempo em que
-permanece na memória (10 a 20%)
+$$
+\begin{aligned}
+U &= 1 – pⁿ \\
+U &= 1 – 0,8^3 \\ 
+U &= 1 – 0,512 \\
+U &≃ 49\% \\
+\end{aligned}
+$$
 
- Assim, cinco processos seriam,
+---
+layout: section
+---
 
-teoricamente, suficientes para ocupar a
-CPU
+# Dúvidas e Perguntas
 
-33
+---
 
-Modelando a
-multiprogramação
+# Bibliografia
 
- Do ponto de vista probabilístico a
+- *Tanenbaum, Andrew S.* Sistemas Operacionais Modernos. 4a. Ed. (**Seção 2.1**)
 
-utilização da CPU pode ser determinada
-pela fórmula:
 
- U = 1 - pn
-
- Onde:
-
- p é a fração de tempo que um processo
-
-espera pela conclusão das operações de E/S
-
- n é o número de processos carregados na
-
-memória
-
-34
-
-35
-
-Exemplo
-
- Considerando que:
-
- Cada processo passa em média 80% do
-
-tempo esperando E/S
-
- Um sistema com 512MB de memória possui
-
-três programas de usuário carregados
-
- Cada programa possui 128MB, inclusive o
-
-SO
-
- De quanto seria a taxa de utilização da
-
-CPU?
-
-36
-
-Exemplo
-
-U = 1 – pn
-
-U = 1 – 0,84
-
-U = 1– 0,41
-
-U ≃ 59%
-
-37
-
-Bibliografia
-
- Tanenbaum, Andrew S.
-Sistemas Operacionais
-Modernos. 4a. Ed.
-(Seção 2.1)
-
-38
-
-Dúvidas e Perguntas
-
-39
-
-FIM
-
-40
-
+---
+src: /src/end.md
+---

@@ -1,6 +1,6 @@
 ---
 theme: default
-transition: fade
+transition: fade-out
 lineNumbers: true
 layout: image
 image: /img/cover_right.svg
@@ -469,6 +469,7 @@ Arquivos e diretórios
 
 - [CLI Advantages and Disadvantages](https://itrelease.com/2021/04/advantages-and-disadvantages-of-command-line-interface-cli/)
 - [50+ Essential Linux Commands](https://www.digitalocean.com/community/tutorials/linux-commands)
+- [copy.sh](https://copy.sh/v86/?profile=linux26)
 
 ---
 src: /src/end.md

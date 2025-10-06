@@ -2,7 +2,8 @@
     "slidev.include": [
         "**/slides.md",
         "aula1_conceitos.md",
-        "lab1_linux_commands.md"
+        "lab1_linux_commands.md",
+        "aula2_processos.md"
     ],
     "slidev.force-enabled": true
 }
