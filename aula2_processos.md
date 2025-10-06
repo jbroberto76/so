@@ -4,10 +4,10 @@ transition: slide-left
 lineNumbers: true
 layout: image
 image: /img/cover_right.svg
-title: Conceitos
+title: Processos
 description: Sistemas Operacionais
 author: José Roberto Bezerra
-exportFilename: so_aula1_conceitos
+exportFilename: so_aula2_processos
 colorSchema: dark
 ---
 
