@@ -1,6 +1,6 @@
 ---
 theme: default
-transition: slide-left
+transition: fade
 lineNumbers: true
 layout: image
 image: /img/cover_right.svg
@@ -74,7 +74,7 @@ layout: center
 ---
 
 $$
-Programa = Processo + Contexto
+Processo = Programa + Contexto
 $$
 
 ---
